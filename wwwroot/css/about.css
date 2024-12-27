@@ -1,0 +1,79 @@
+﻿body {
+    padding-left: 11%;
+}
+
+
+.navbar {
+    color: black;
+    padding-left: 15%;
+}
+
+header {
+    padding-left: 1%;
+    padding-top: 1.2%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    font-size: medium;
+    color: dimgrey;
+    line-height: 67%;
+    padding-left: 1%;
+}
+
+
+/* Комбинированный селектор - применяется ко всем элементам */
+header, footer, aside, body, .navbar {
+    font-family: "Helvetica 65 Medium", sans-serif;
+}
+
+    .navbar p {
+        color: white;
+        padding-left: 15%;
+    }
+        /* Стили панели навигации при наведении мышью */
+        .navbar p:hover {
+            color: aliceblue;
+        }
+
+
+.search-form input[type=text]:hover {
+    cursor: pointer;
+}
+
+header, footer, body {
+    background-color: linen;
+}
+
+aside {
+    height: 100%; /* Высота в полный размер. Этот параметр можно убрать, если вы хотите выставлять высоту автоматически */
+    width: 10%;
+    position: absolute; /* Фиксированная позиция сайд-бара. Так он будет оставаться на месте при скроллинге */
+    z-index: 1; /* Сайд-бар будет поверх остальных элементов */
+    top: 0; /* Сайдбар будет в самой верхней части страницы */
+    left: 0;
+    background-color: white; /* Черный цвет фона (задан в виде кода) */
+    overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+    padding-top: 2%;
+    font-size: large;
+}
+
+
+
+.review-container, .review-button {
+    display: inline-block;
+    margin-top: 0.7em;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+
+.review-text {
+    display: absolute;
+    margin-top: 0.5em;
+    padding-left: 1%;
+    padding-top: 1%;
+}
+
+
+

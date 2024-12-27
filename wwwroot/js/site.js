@@ -1,7 +1,7 @@
 ﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
-const { write } = require("@popperjs/core");
+//const { write } = require("@popperjs/core");
 
 // Write your JavaScript code.
 
@@ -95,9 +95,8 @@ for (let i = 0; i <= elements.length; i++) {
 }     
 
 var writeReview = review => {
-    document.getElementsByClassName('reviews')[0].innerHTML += '<div class="review-button"> \n' + `<p> <i> <b>${review['userName']}</b>  ${review['date']}</i></p>` +
-        `<p>${review['comment']}</p>` +
-        '</div>';
+    document.getElementsByClassName('reviews')[0].innerHTML += '<div class="review-button">' + `<p> <i> <b>${review['userName']}</b>  ${review['date']}</i></p>` +
+        `<p>${review['comment']}</p>` +'</div>';
 }
 
 function AddReviews() //функция добавления отзывов
@@ -118,4 +117,24 @@ function AddReviews() //функция добавления отзывов
 
     writeReview(review)
 }
+
+ //зарплаты в $
+const salary = {
+    Maria: 400,
+    Sergey: 800,
+    Jana: 750
+};
+
+
+salary.Maria = 800;
+console.log(salary.Maria); 
+
+salary.Maxim = 950; 
+delete salary.Sergey;
+
+for (let key in salary) {
+    console.log(salary[key]);
+}
+
+
 
