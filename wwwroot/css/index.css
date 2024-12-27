@@ -6,7 +6,7 @@
 }
 
 .navbar {
-    color: darkgray;
+    color: black;
     padding-left: 15%;
 }
 
@@ -34,7 +34,7 @@ aside {
     z-index: 1; /* Сайд-бар будет поверх остальных элементов */
     top: 0; /* Сайдбар будет в самой верхней части страницы */
     left: 0;
-    background-color: #111; /* Черный цвет фона (задан в виде кода) */
+    background-color: white; /* Черный цвет фона (задан в виде кода) */
     overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
     padding-top: 2%;
     font-size: large;
@@ -50,10 +50,31 @@ header, footer, aside, body, .navbar, .video-container {
     font-family: "Helvetica 65 Medium", sans-serif;
 }
     .navbar p {
-        color: darkgray;
+        color: white;
         padding-left: 15%;
     }
         /* Стили панели навигации при наведении мышью */
         .navbar p:hover {
             color: aliceblue;
         }
+
+
+.search-form input[type=text]:hover {
+    cursor: pointer;
+}
+
+.review-container, .review-button {
+    position: absolute;
+    font-size: medium;
+    margin-top: 0.5em;
+    padding-left: 12%;
+    padding-top: 12%;
+}
+
+
+.info {
+    position: absolute;
+    bottom: 0;
+    font-size: medium;
+    color: black; 
+}

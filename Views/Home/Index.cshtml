@@ -12,8 +12,8 @@
 <body>
 <aside id="sidebar">
        <div class="navbar">
-           <p>Все трансляции</p>
-           <p>О проекте</p>
+            <a  asp-area="" asp-controller="Home" asp-action="Index">Все трансляции</a>
+            <a  asp-area="" asp-controller="Home" asp-action="Privacy">О проекте</a>
        </div>
 </aside>
    
@@ -24,26 +24,37 @@
    
    <p>Покажем, что происходит прямо сейчас</p>
    </header>
-   <form action="/search" method="get">
-     <label for="search">Поиск видео:</label>
-            <input type="text" id="search" name="query">
-            <button type="submit">Найти</button>
-   </form>
+        <form class="search-form">
+            <label for="search">Поиск видео:</label>
+            <input type="text" oninput="
+                     const inputParseFunction = function(){
+                            return document.getElementsByTagName('input')[0].value.toLowerCase();
+                 }
+                
+                   contentFiler(inputParseFunction) " size=50% <input />
+
+        </form>
+        <script> 
+            AgeSession(); 
+        </script>
   <!-- <a href="https://www.youtube.com/watch?v=Vn28Tk_uuq0"><button> Москва </button></a>
    <a href="https://www.youtube.com/watch?v=GSmCh4DrbWY"><button> Нью-Йорк </button></a>
    <a href="https://www.youtube.com/watch?v=JplMzss6_YE&ab_channel=WokiliWanders"><button> Лондон
    </button></a> !-->
 	<div class = "video-container">
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/srlpC5tmhYs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-     </div>
+     <h2> Москва </h2>
+        </div>
 	 <!--Санкт-Петербург-->
 	 <div class = "video-container">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/wCcMcaiRbhM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-     </div>
+            <h2> Санкт-Петербург</h2>
+        </div>
 	<div class = "video-container">
 	 <!--Лондон-->
       <iframe width="560" height="315" src="https://www.youtube.com/embed/JplMzss6_YE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</div>
+            <h2>Лондон</h2>
+        </div>
 
    </div>
    
