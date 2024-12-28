@@ -5,75 +5,70 @@
 
 // Write your JavaScript code.
 
-/*
-При открытии сайта спрашиваем возраст пользователя, он его вводит. 
-Сохраняем результат в переменную и выполняем проверку.
-Если пользователь старше 18 лет — показываем ему приветствие и загружаем сайт.
-Если младше — сообщаем, что наш сайт для лиц старше 18 лет, и перенаправляем на google.com.
 
-//alert("Приветствуем на LifeSpot! " + new Date().toLocaleString());
-let ageBox = prompt('Введите свой возраст');
-ageBox > 18 ? alert("Приветствуем на LifeSpot! " + new Date().toLocaleString()) : alert(" Вы младше 18 лет.Вы будете перенаправены"); window.location.href = "http://www.google.com"
+    /*
+    Для хранения всех данных сессии (время начала, user-agent, возраст пользователя) использовался объект window.sessionStorage.
+Возраст у пользователя запрашивался только один раз, при первичном входе на страницу.
+Приветствие показывалось только один раз, при первичном входе на страницу.
+Если пользователь уже один раз прошел проверку возраста, он должен спокойно обновлять страницу и не видеть никаких всплывающих окон. 
+Время начала сессии должно также проставляться только один раз, при первичном входе на страницу. 
+    */
 
-// Получим коллекцию всех элементов страницы
-let elements = document.getElementsByTagName('*');
+    // Проверка на возраст и сохранение сессии
 
-// Выведем результат в уведомление
-alert(`Количество элементов на странице:  ${elements.length}`);
+        let checker = function (newVisit) {
+            if (window.sessionStorage.getItem("userAge") >= 18) {
+                // Добавим проверку на первое посещение, чтобы не показывать приветствие
+                // лишний раз
+                if (newVisit) {
+                    alert("Приветствуем на LifeSpot! " + '\n' + "Текущее время: " + new Date().toLocaleString());
+                }
+            }
+            else {
+                alert("Наши трансляции не предназначены для лиц моложе 18 лет. Вы будете перенаправлены");
+                window.location.href = "http://www.google.com"
+            }
+        }
 
-let arr = [1, 2, 3]
-
-arr.forEach(function (item, index, array) {
-
-    console.log(item)
-
-});
-
-
-
-let elements = document.getElementsByTagName('input');
-let elements = document.getElementsByClassName('video-container')
-for (let i = 0; i <= elements.length; i = i + 1) {
-    console.log(elements[i]);
-}
-// Получим первый элемент DOM в коллекции
-let element = elements[0]; // Получим строковое значение
-let elementText = element.value;
-//let buttonIn = document.getElementById("myButton")
-// Выведем во всплывающее окно
-alert(elementText)
-*/
-let AgeSession = function AgeProv() { 
-let session = new Map();
-// Сохраним UserAgent
-session.set("userAgent", window.navigator.userAgent)
-
-
-// Запросим возраст пользователя и тоже сохраним
-session.set("age", prompt("Пожалуйста, введите ваш возраст?"))
-
-// Проверка на возраст и сохранение сессии
-if (session.get("age") >= 18) {
-    let startDate = new Date().toLocaleString();
-
-    alert("Приветствуем на LifeSpot! " + '\n' + "Текущее время: " + startDate);
-    session.set("startDate", startDate)
-}
-else {
-    alert("Наши трансляции не предназначены для лиц моложе 18 лет. Вы будете перенаправлены");
-    window.location.href = "http://www.google.com"
-    a = true + 20 + "name"
+let logger = function () {
+    console.log('Начало сессии: ' + window.sessionStorage.getItem("startDate"))
+    console.log('Даныне клиента: ' + window.sessionStorage.getItem("userAgent"))
+    console.log('Возраст пользователя: ' + window.sessionStorage.getItem("userAge"))
 }
 
-// Вывод в консоль
-for (let result of session) {
-    console.log(result)
+
+function handleSession(logger, checker) {
+
+    // Проверяем дату захода и проставляем, если новый визит
+    if (window.sessionStorage.getItem("startDate") == null) {
+        window.sessionStorage.setItem("startDate", new Date().toLocaleString())
+    }
+
+    // Проверяем userAgent и проставляем, если новый визит
+    if (window.sessionStorage.getItem("userAgent") == null) {
+        window.sessionStorage.setItem("userAgent", window.navigator.userAgent)
+    }
+
+    // Проверяем возраст и проставляем, если новый визит
+    if (window.sessionStorage.getItem("userAge") == null) {
+        let input = prompt("Пожалуйста, введите ваш возраст?");
+        window.sessionStorage.setItem("userAge", input)
+
+        /* Возраст отсутствовал в sessionStorage. Значит, это первый визит пользователя, и
+         при прохождении проверки на возраст он увидит приветствие*/
+        checker(true)
+    } else {
+
+        /* Пользователь заходит не первый раз, приветствие не показываем. */
+        checker(false)
+    }
+    logger()
 }
-}
+
 setTimeout(() =>
     alert("Нравится LifeSpot? " + '\n' + "Подпишитесь на наш Instagram @lifespot999!"),
     30000);
-//AgeProv();
+
 
 let contentFiler = function (inputString) { 
 // Сохраняем текст пользовательского запроса.
@@ -93,7 +88,7 @@ for (let i = 0; i <= elements.length; i++) {
     }
 }
 }     
-
+/*
 var writeReview = review => {
     document.getElementsByClassName('reviews')[0].innerHTML += '<div class="review-button">' + `<p> <i> <b>${review['userName']}</b>  ${review['date']}</i></p>` +
         `<p>${review['comment']}</p>` +'</div>';
@@ -118,23 +113,8 @@ function AddReviews() //функция добавления отзывов
     writeReview(review)
 }
 
- //зарплаты в $
-const salary = {
-    Maria: 400,
-    Sergey: 800,
-    Jana: 750
-};
+/*
 
-
-salary.Maria = 800;
-console.log(salary.Maria); 
-
-salary.Maxim = 950; 
-delete salary.Sergey;
-
-for (let key in salary) {
-    console.log(salary[key]);
-}
 
 
 

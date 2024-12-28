@@ -1,0 +1,110 @@
+Для реализации авторизации на странице с использованием Razor Pages и Entity Framework (EF) 
+вам потребуется выполнить следующие шаги:
+
+1. **Создайте модель пользователя:**
+   - Определите класс, который будет представлять пользователя в вашей системе. Этот класс должен содержать свойства, 
+ такие как имя пользователя, пароль, роль и т.д.
+   - Пример модели пользователя:
+   ```csharp
+   public class User
+   {
+       public string Username { get; set; }
+       public string Password { get; set; }
+       public Role Role { get; set; } // Роль пользователя
+   }
+   ```
+
+2. **Настройте соединение с базой данных:**
+   - В файле Program.cs настройте соединение с базой данных, добавив строку подключения в метод Main. Для этого:
+
+Импортируйте необходимые пространства имён. В начало файла добавьте следующие строки:
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+
+Создайте экземпляр класса DbContext. Внутри метода Main создайте экземпляр класса YourDbContext и передайте ему строку подключения:
+var builder = WebApplication.CreateBuilder(args);
+
+// Создание экземпляра контекста данных
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<YourDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+var app = builder.Build();
+
+
+   ```
+3. **Реализуйте функции входа и выхода:**
+   - Функция входа должна проверять введенные пользователем логин и пароль в базе данных и возвращать статус авторизации.
+   - Функция выхода должна удалять данные пользователя из локального хранилища и базы данных.
+   - Примеры функций входа и выхода:
+   ```csharp
+   private bool Login(string username, string password)
+   {
+       using (var context = new MyDbContext())
+       {
+           // Поиск пользователя в базе данных
+           var user = context.Users.FirstOrDefault(u => u.Username == username);
+           if (user != null && user.Password == password)
+           {
+               // Сохранение данных пользователя в локальном хранилище
+               localStorage.setItem("user", username);
+               return true;
+           }
+           return false;
+       }
+   }
+
+   private void Logout()
+   {
+       using (var context = new MyDbContext())
+       {
+           // Удаление данных пользователя из базы данных
+           context.Users.Remove(context.Users.Find(localStorage.getItem("user")));
+           localStorage.removeItem("user");
+       }
+   }
+   ```
+4. **Отобразите статус авторизации:**
+   - Используйте функцию `displayLoginStatus` для отображения статуса авторизации на странице.
+   - Пример отображения статуса авторизации:
+   ```html
+   <div id="login-status"></div>
+   ```
+5. **Добавьте формы ввода логина и пароля, а также кнопки входа и выхода:**
+   - Добавьте HTML-код для форм ввода логина и пароля, а также кнопок входа и выхода.
+   - Пример HTML-кода:
+   ```html
+   @page
+   @model YourPageModel
+
+   @{
+       Layout = "_Layout";
+   }
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+       <meta name="viewport" content="width=device-width" />
+       <title>Страница авторизации</title>
+   </head>
+   <body>
+       @if (!User.Identity.IsAuthenticated)
+       {
+           <form method="post">
+               <input type="text" name="username" placeholder="Введите логин" />
+               <input type="password" name="password" placeholder="Введите пароль" />
+               <button type="submit">Войти</button>
+           </form>
+
+           <button onclick="logout()">Выйти</button>
+       }
+       else
+       {
+           <p>Добро пожаловать, @User.Identity.Name!</p>
+           <a href="/Account/Logout">Выйти</a>
+       }
+   </body>
+   </html>
+   ```
+6. **Запустите приложение:**
+   - После выполнения всех шагов вы сможете запустить приложение и проверить авторизацию на странице.

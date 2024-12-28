@@ -7,20 +7,31 @@
    <meta charset="UTF-8">
    <title>LifeSpot</title>
     <link href="~/css/index.css" rel="stylesheet" type="text/css">
-  
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </head>
 <body>
 <aside id="sidebar">
        <div class="navbar">
             <a  asp-area="" asp-controller="Home" asp-action="Index">Все трансляции</a>
-            <a  asp-area="" asp-controller="Home" asp-action="Privacy">О проекте</a>
+            <a  asp-area="" asp-controller="Home" asp-action="About">О проекте</a>
        </div>
 </aside>
    
+<script>
+        // обработка сессии
+        handleSession(logger, checker);
+
+        // функция для получения пользовательского ввода
+        const inputParseFunction = function () {
+            return document.getElementsByTagName('input')[0].value.toLowerCase();
+        }
+</script>
+
+
    <div class = "block">
    <header>
    <h1>LifeSpot — прямые трансляции с улиц</h1>
-  
+           
    
    <p>Покажем, что происходит прямо сейчас</p>
    </header>
@@ -33,10 +44,11 @@
                 
                    contentFiler(inputParseFunction) " size=50% <input />
 
+
+
+
         </form>
-        <script> 
-            AgeSession(); 
-        </script>
+      
   <!-- <a href="https://www.youtube.com/watch?v=Vn28Tk_uuq0"><button> Москва </button></a>
    <a href="https://www.youtube.com/watch?v=GSmCh4DrbWY"><button> Нью-Йорк </button></a>
    <a href="https://www.youtube.com/watch?v=JplMzss6_YE&ab_channel=WokiliWanders"><button> Лондон
