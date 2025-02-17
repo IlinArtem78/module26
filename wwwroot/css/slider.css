@@ -1,0 +1,151 @@
+﻿body {
+    
+}
+
+
+.img-first {
+    position: relative;
+    left: -80px;
+    top: 0px;
+    width: 1498px;
+    height: 722px;
+    display:block; 
+}
+
+.img-second {
+    position: relative;
+    left: -80px;
+    top: 0px;
+    width: 1498px;
+    height: 722px;
+    display:none; 
+}
+
+.img-third {
+    position: relative;
+    left: -80px;
+    top: 0px;
+    width: 1498px;
+    height: 722px;
+    display: none;
+}
+
+
+
+.left-buuton-img-first {
+    position: absolute;
+    left: 126px;
+    top: 370px;
+    width: 134px;
+    height: 50px;
+    //background: #00bcd4;
+    //background-blend-mode: normal;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.right-buuton-img-first {
+    position: absolute;
+    left: 1230px;
+    top: 370px;
+    width: 154px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.first {
+    width: 1340px;
+    height: 754px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.left-buuton-img-second {
+    position: absolute;
+    left: 126px;
+    top: 370px;
+    width: 134px;
+    height: 50px;
+    //background: #00bcd4;
+    //background-blend-mode: normal;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.right-buuton-img-second {
+    position: absolute;
+    left: 1230px;
+    top: 370px;
+    width: 154px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.second {
+    width: 1340px;
+    height: 754px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+
+
+.left-buuton-img-third {
+    position: absolute;
+    left: 126px;
+    top: 370px;
+    width: 134px;
+    height: 50px;
+    //background: #00bcd4;
+    //background-blend-mode: normal;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.right-buuton-img-third {
+    position: absolute;
+    left: 1230px;
+    top: 370px;
+    width: 154px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+
+.third {
+    width: 1340px;
+    height: 754px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+
+
+footer, aside, body {
+    font-family: "Helvetica 65 Medium", sans-serif;
+}

@@ -1,4 +1,16 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using WebApplication1;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+/*
+builder.Services.AddDbContext<YourDbContext>(options =>
+    options.UseSqlServer(connectionString));
+*/
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -20,9 +32,30 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=slider}/{id?}");
+/*
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Site}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=slider}/{id?}");
+/*
+
+
+/*
+app.UseEndpoints(endpoints =>
+{
+    // Маппинг статических файлов
+
+    endpoints.MapCss();
+    endpoints.MapJs();
+    endpoints.MapHtml();
+});
+*/
 
 app.Run();
 
@@ -30,4 +63,4 @@ app.Run();
 
 
 
-    services.AddDbContext<MyDbContext>(options => options.UseSqlServer(connectionString));
+   
